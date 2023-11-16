@@ -44,8 +44,8 @@ export const AddNoticeForm = () => {
           title: "Notice Added"
         })
         router.refresh('/dashboard/noticeboard');
-        revalidatePath('/dashboard/noticeboard');
         dialogClose();
+        revalidatePath('/dashboard/noticeboard');
       });
   };
 
