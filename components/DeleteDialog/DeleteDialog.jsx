@@ -16,14 +16,15 @@ import { useState } from "react"
 import axios from "axios"
 import Spinner from "../ui/spinner"
 import { useToast } from "@/components/ui/use-toast";
-import { useRouter } from 'next/navigation';
+import clearCache from "@/lib/actions"
+
  
 
 export function DeleteDialog({id, type}) {
 
   const [deleteStatus, setDeleteStatus] = useState(false);
   const { toast } = useToast();
-  const router = useRouter();
+
 
   const handleDelete = async () => {
     if(type == "events")
@@ -36,9 +37,10 @@ export function DeleteDialog({id, type}) {
       setDeleteStatus(false);
       dialogClose();
       toast({
-        title: `${type} deleted!`
+        title: `${type} Deleted!`
       })
-      router.refresh(`api/${type}`);
+ 
+      clearCache(`dashboard/${type}`);
     } catch (error) {
       console.error("Error deleting faculty:", error);
       setDeleteStatus(false);

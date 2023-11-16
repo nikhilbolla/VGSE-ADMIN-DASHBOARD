@@ -26,7 +26,7 @@ export const DataTable = ({ type, data }) => {
 
       <Table>
         <TableCaption>
-          {data ? `A list of your ${type.name}.` : "no data has found"}
+          {data.length > 0 ? `A list of your ${type.name}.` : "no data has found"}
         </TableCaption>
         <TableHeader>
           <TableRow>
@@ -145,7 +145,7 @@ export const DataTable = ({ type, data }) => {
             {data.map((data, index) => (
               <TableRow key={index}>
                 {data.date && (
-                  <TableCell className="font-medium">{data.updatedAt.slice(0,10)}</TableCell>
+                  <TableCell className="font-medium">{data.date.slice(0,10)}</TableCell>
                 )}
 
                 {data.title && (

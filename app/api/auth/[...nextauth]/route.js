@@ -27,10 +27,7 @@ export const authOptions = {
             console.log("Password wrong")
             return null;
           }
-          return {
-            name: user.userName,
-            email: user.email
-          };
+          return user
         } catch (error) {
           console.log("Error");
           return;
@@ -38,9 +35,30 @@ export const authOptions = {
       },
     }),
   ],
-  session: {
-    strategy: "jwt",
-  },
+  callbacks: {
+
+    async jwt({ token, user }) {
+     // the user present here gets the same data as received from DB call  made above -> fetchUserInfo(credentials.opt)
+   
+     if (user) {
+      token.username = user.userName;
+      token.img = user.img;
+      token.email = user.email;
+      token.phone = user.phone;
+     }
+     return token;
+    },
+     async session({ session, token }) {
+     // user param present in the session(function) does not recive all the data from DB call -> fetchUserInfo(credentials.opt)
+      if(token) {
+        session.user.username = token.username;
+        session.user.img = token.img;
+        session.user.email = token.email;
+        session.user.phone = token.phone;
+      }
+     return session;
+    },
+   },
 
   secret: process.env.NEXTAUTH_SECRET,
   pages: {

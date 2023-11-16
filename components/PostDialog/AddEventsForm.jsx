@@ -11,10 +11,10 @@ import { supabase } from "@/lib/supabase";
 import { dialogClose } from "../ui/dialog";
 import { v4 as uuidv4 } from "uuid";
 import Spinner from "../ui/spinner";
-import { useRouter } from 'next/navigation';
 import { useToast } from "@/components/ui/use-toast";
 import { IoIosCloudDone } from "react-icons/io";
 import { AlertCircle } from "lucide-react";
+import clearCache from "@/lib/actions";
 
 
 export const AddEventsForm = () => {
@@ -27,7 +27,7 @@ export const AddEventsForm = () => {
   const [photouploadStatus, setPhotoUploadStatus] = useState(null);
   const [error, setError] = useState();
   const { toast } = useToast();
-  const router = useRouter();
+
 
   // Photo Upload to Supabase
   const handleUpload = async (e) => {
@@ -35,7 +35,7 @@ export const AddEventsForm = () => {
     setPhotoUploadStatus(1);
     const file = e.target.files[0];
     console.log(file);
-    const filename = `${uuidv4()}-${file.name}`;
+    const filename = `images/events/${uuidv4()}-${file.name}`;
     const { data, error } = await supabase.storage
       .from("images")
       .upload(filename, file, {
@@ -73,7 +73,7 @@ export const AddEventsForm = () => {
         toast({
           title: "Event Added"
         })
-        router.refresh('/dashboard/events');
+        clearCache('/dashboard/events');
         dialogClose();
       });
   };

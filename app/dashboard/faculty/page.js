@@ -2,6 +2,11 @@ import React from "react";
 import { DataTable } from "@/components/DataTable/DataTable";
 import { fetchFaculty } from "@/lib/data";
 
+const getData = async ()  => {
+  const data = await fetchFaculty();
+  return data;
+}
+
 export default async function page() {
   const type = {
     name: "faculty",
@@ -33,9 +38,7 @@ export default async function page() {
     ],
   };
 
-  const tabledata = await JSON.parse(JSON.stringify(await fetchFaculty()));
-
-
+  const tabledata = await JSON.parse(JSON.stringify(await getData()));
 
 
   return (

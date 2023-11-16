@@ -17,6 +17,13 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  img: {
+    type: String,
+
+  },
+  phone: {
+    type: String
+  }
 }, {timestamps: true});
 
  const User = models.User|| mongoose.model('User', userSchema);

@@ -41,9 +41,12 @@ export const Navbar = () => {
               <a href="https://vgsek.ac.in/" className="">
                 <Image
                   src="/vgsek-logo.png"
-                  height={200}
-                  width={200}
-                  alt="vgse logo"
+                  priority
+                  width="0"
+                  height="0"
+                  sizes="10vw"
+                  className="w-full h-auto"
+                  alt="vgselogo"
                 />
               </a>
             </div>
@@ -59,7 +62,6 @@ export const Navbar = () => {
       {/* SideBar  */}
       <div>
         <aside
-          
           className={`fixed top-16 left-0 z-40 w-64 h-screen transition-transform ${
             isSidebarOpen ? "" : "-translate-x-full sm:translate-x-0"
           }`}
@@ -68,7 +70,9 @@ export const Navbar = () => {
             <ul className="space-y-2 font-medium">
               <li>
                 <Link
-                  onClick={() => {setIsSidebarOpen(false)}}
+                  onClick={() => {
+                    setIsSidebarOpen(false);
+                  }}
                   href="/dashboard"
                   className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                 >
@@ -87,7 +91,9 @@ export const Navbar = () => {
               </li>
               <li>
                 <Link
-                onClick={() => {setIsSidebarOpen(false)}}
+                  onClick={() => {
+                    setIsSidebarOpen(false);
+                  }}
                   href="/dashboard/events"
                   className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                 >
@@ -106,7 +112,9 @@ export const Navbar = () => {
               </li>
               <li>
                 <Link
-                onClick={() => {setIsSidebarOpen(false)}}
+                  onClick={() => {
+                    setIsSidebarOpen(false);
+                  }}
                   href="/dashboard/faculty"
                   className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                 >
@@ -126,7 +134,9 @@ export const Navbar = () => {
 
               <li>
                 <Link
-                onClick={() => {setIsSidebarOpen(false)}}
+                  onClick={() => {
+                    setIsSidebarOpen(false);
+                  }}
                   href="/dashboard/cover"
                   className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                 >
@@ -145,7 +155,9 @@ export const Navbar = () => {
               </li>
               <li>
                 <Link
-                onClick={() => {setIsSidebarOpen(false)}}
+                  onClick={() => {
+                    setIsSidebarOpen(false);
+                  }}
                   href="/dashboard/noticeboard"
                   className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                 >

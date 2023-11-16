@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useRouter } from 'next/navigation';
+
 import { dialogClose } from "../ui/dialog";
 
 import Spinner from "../ui/spinner";
@@ -23,7 +23,7 @@ export const AddNoticeForm = () => {
   const [uploadStatus, setUploadStatus] = useState(false);
   const [error, setError] = useState();
   const { toast } = useToast();
-  const router = useRouter();
+
 
   const handleNoticeFormUpload = async (e) => {
     e.preventDefault();
@@ -44,9 +44,9 @@ export const AddNoticeForm = () => {
         toast({
           title: "Notice Added"
         })
-      
-        dialogClose();
         clearCache('/dashboard/noticeboard');
+        dialogClose();
+        
       });
   };
 

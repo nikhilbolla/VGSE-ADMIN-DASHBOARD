@@ -12,9 +12,9 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { AlertCircle } from "lucide-react";
 import axios from "axios";
 import Spinner from "../ui/spinner";
-import { useRouter } from 'next/navigation';
 import { dialogClose } from "../ui/dialog";
 import { IoIosCloudDone } from "react-icons/io";
+import clearCache from "@/lib/actions";
 
 export const AddCoverForm = () => {
 
@@ -25,8 +25,6 @@ export const AddCoverForm = () => {
     const [mobilePhotouploadStatus, setMobilePhotoUploadStatus] = useState(null);
     const [error, setError] = useState();
     const { toast } = useToast();
-    const router = useRouter();
-
 
     // Desktop cover Upload to Supabase
   const handleDesktopUpload = async (e) => {
@@ -34,7 +32,7 @@ export const AddCoverForm = () => {
     e.preventDefault();
     const file = e.target.files[0];
 
-    const filename = `${uuidv4()}-${file.name}`;
+    const filename = `images/cover/desktop/${uuidv4()}-${file.name}`;
     const { data, error } = await supabase.storage
       .from("images")
       .upload(filename, file, {
@@ -54,7 +52,7 @@ export const AddCoverForm = () => {
     e.preventDefault();
     const file = e.target.files[0];
 
-    const filename = `${uuidv4()}-${file.name}`;
+    const filename = `images/cover/mobile/${uuidv4()}-${file.name}`;
     const { data, error } = await supabase.storage
       .from("images")
       .upload(filename, file, {
@@ -88,7 +86,8 @@ export const AddCoverForm = () => {
             title: "Covers Added!",
             desc: "Have a Look at them at vaageswari Website "
           })
-          router.refresh('/dashboard/cover');
+  
+          clearCache('/dashboard/cover');
           dialogClose();
         });
     };

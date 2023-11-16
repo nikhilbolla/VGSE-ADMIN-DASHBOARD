@@ -1,10 +1,14 @@
 import { DataTable } from '@/components/DataTable/DataTable'
-
 import { fetchEvents } from '@/lib/data';
+
 import React from 'react'
 
+const getData = async ()  => {
+  const data = await fetchEvents();
+  return data;
+}
 
-export default async function page() {
+export default async function Page() {
 
   const type = {
     name: "events",
@@ -25,12 +29,7 @@ export default async function page() {
     ]
   }
 
-  
-
-  const tabledata = await JSON.parse(JSON.stringify(await fetchEvents()));
-
-
-
+  const tabledata = await JSON.parse(JSON.stringify(await getData()));
 
   return (
 

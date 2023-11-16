@@ -12,9 +12,10 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { AlertCircle } from "lucide-react";
 import axios from "axios";
 import Spinner from "../ui/spinner";
-import { useRouter } from "next/navigation";
+
 import { dialogClose } from "../ui/dialog";
 import { IoIosCloudDone } from "react-icons/io";
+import clearCache from "@/lib/actions";
 
 export const AddFacultyForm = () => {
   const [name, setName] = useState("");
@@ -35,7 +36,7 @@ export const AddFacultyForm = () => {
   const [error, setError] = useState();
 
   const { toast } = useToast();
-  const router = useRouter();
+ 
 
   // Research Input Handlers
   const addresearch = () => {
@@ -84,7 +85,7 @@ export const AddFacultyForm = () => {
     setPhotoUploadStatus(1);
     const file = e.target.files[0];
     console.log(file);
-    const filename = `${uuidv4()}-${file.name}`;
+    const filename = `images/faculty/${uuidv4()}-${file.name}`;
     const { data, error } = await supabase.storage
       .from("images")
       .upload(filename, file, {
@@ -138,7 +139,8 @@ export const AddFacultyForm = () => {
         toast({
           title: "Faculty Added",
         });
-        router.refresh("/dashboard/faculty");
+      
+        clearCache('/dashboard/faculty');
         dialogClose();
       });
   };

@@ -11,6 +11,7 @@ import { dialogClose } from "../ui/dialog";
 import Spinner from "../ui/spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { AlertCircle } from "lucide-react";
+import clearCache from "@/lib/actions";
 
 
 
@@ -41,8 +42,8 @@ export const EditNoticeForm = ({data}) => {
         setUploadStatus(false);
         toast({
           title: "Notice Updated"
-        })
-        router.refresh('/dashboard/noticeboard');
+        })    
+        clearCache('/dashboard/noticeboard');
         dialogClose();
       });
   };
