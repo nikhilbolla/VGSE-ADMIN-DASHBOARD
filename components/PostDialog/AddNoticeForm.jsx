@@ -12,6 +12,7 @@ import { dialogClose } from "../ui/dialog";
 import Spinner from "../ui/spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { AlertCircle } from "lucide-react";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -43,6 +44,7 @@ export const AddNoticeForm = () => {
           title: "Notice Added"
         })
         router.refresh('/dashboard/noticeboard');
+        revalidatePath('/dashboard/noticeboard');
         dialogClose();
       });
   };
