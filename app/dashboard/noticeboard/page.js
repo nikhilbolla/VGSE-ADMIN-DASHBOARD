@@ -2,10 +2,7 @@ import React from 'react'
 import { DataTable } from '@/components/DataTable/DataTable' 
 import { fetchNotices } from '@/lib/data';
 
-const getData = async ()  => {
-  const data = await fetchNotices();
-  return data;
-}
+export const revalidate = 0
  
 export default async function Page(){
     const type = {
@@ -18,7 +15,7 @@ export default async function Page(){
         ]
       }
     
-      const tabledata = await JSON.parse(JSON.stringify(await getData()));
+      const tabledata = await JSON.parse(JSON.stringify(await fetchNotices()));
     
       return (
     

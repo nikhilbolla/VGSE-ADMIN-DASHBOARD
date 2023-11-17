@@ -3,11 +3,7 @@ import { DataTable } from "@/components/DataTable/DataTable";
 import { fetchCover } from "@/lib/data";
 import React from "react";
 
-const getData = async ()  => {
-  const data = await fetchCover();
-  return data;
-}
-
+export const revalidate = 0
 
 export default async function Page() {
   const type = {
@@ -25,7 +21,7 @@ export default async function Page() {
     ],
   };
 
-  const tabledata = await JSON.parse(JSON.stringify(await getData()));
+  const tabledata = await JSON.parse(JSON.stringify(await fetchCover()));
 
   return (
     <div>
